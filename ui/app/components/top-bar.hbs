@@ -1,0 +1,21 @@
+{{!-- Copyright 2021 Yahoo Holdings Inc. Licensed under the terms of the MIT license. See accompanying LICENSE.md file for terms. --}}
+<DenaliNavbar
+  @isResponsive={{true}}
+  class="top-bar"
+  as |Nav|
+>
+  <Nav.Left as |Left|>
+    <DirSidebarToggle />
+    <LinkTo @route="index">
+      <Left.Logo src="{{this.rootURL}}img/yavin-logo.svg"/>
+    </LinkTo>
+  </Nav.Left>
+  <Nav.Right as |Right|>
+    <a class="nav-item" href="https://github.com/yahoo/navi">
+      {{!-- Change to Right.Icon once `icon-name` support is added to @denali/ember --}}
+      <DenaliIcon @icon="github"/>
+      <span class="icon-name">Github</span>
+    </a>
+    <Right.Item><DenaliIcon class="m-r-10" @icon="user-profile-circle"/>{{this.loggedInUser}}</Right.Item>
+  </Nav.Right>
+</DenaliNavbar>

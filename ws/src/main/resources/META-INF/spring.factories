@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ com.yahoo.yavin.ws.config.UIConfig, \
+ com.yahoo.yavin.ws.config.WebConfig
