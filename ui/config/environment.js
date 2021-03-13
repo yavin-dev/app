@@ -39,7 +39,8 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    ENV['ember-cli-mirage'] = { enabled: !process.env.DISABLE_MOCKS };
+    ENV['ember-cli-mirage'] = { enabled: true };
+
     /*
      * ENV.APP.LOG_RESOLVER = true;
      * ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -62,11 +63,26 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    if (process.env.BUILD_NAVI_DEMO === 'true') {
-      ENV['rootURL'] = '/yavin/';
-      ENV['locationType'] = 'hash';
-      ENV['ember-cli-mirage'] = { enabled: true };
-    }
+    // here you can enable a production-specific feature
+  }
+
+  /*
+   * ENVIRONMENT VARIABLE OVERRIDES
+   */
+  const { LOCATION_TYPE } = process.env;
+  if (undefined !== LOCATION_TYPE) {
+    ENV['locationType'] = LOCATION_TYPE;
+  }
+
+  const { ROOT_URL } = process.env;
+  if (undefined !== ROOT_URL) {
+    ENV['rootURL'] = ROOT_URL;
+  }
+
+  const { ENABLE_MOCKS } = process.env;
+  if (undefined !== ENABLE_MOCKS) {
+    const enabled = ENABLE_MOCKS === 'true';
+    ENV['ember-cli-mirage'] = { enabled };
   }
 
   return ENV;

@@ -12,6 +12,7 @@ node {
   version.set("12.16.0")
   distBaseUrl.set("https://nodejs.org/dist")
   download.set(true)
+  npmInstallCommand.set(if (System.getenv("CI") != null) "ci" else "install")
 }
 
 val lintTask = tasks.register<NpmTask>("lintUI") {
@@ -38,7 +39,7 @@ val buildTask = tasks.register<NpmTask>("buildUI") {
   outputs.dir("dist")
 
   dependsOn(tasks.npmInstall)
-  environment.set(mapOf("DISABLE_MOCKS" to "true", "EMBER_ENV" to buildEnv))
+  environment.set(mapOf("ENABLE_MOCKS" to "false", "EMBER_ENV" to buildEnv))
   args.set(listOf("run", "build"))
 }
 
