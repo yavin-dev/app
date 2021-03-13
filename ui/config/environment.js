@@ -69,6 +69,7 @@ module.exports = function (environment) {
   /*
    * ENVIRONMENT VARIABLE OVERRIDES
    */
+
   const { LOCATION_TYPE } = process.env;
   if (undefined !== LOCATION_TYPE) {
     ENV['locationType'] = LOCATION_TYPE;
