@@ -17,12 +17,7 @@ jsconfig.json
 .gradle
 build/
 
-app/target
-app/build
-app/out
-models/target
-models/build
-models/out
+ws/derby.log
 
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
