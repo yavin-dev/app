@@ -4,12 +4,22 @@
  */
 
 @import 'denali/denali';
+/**
+ * To enable dark mode
+ * - Comment light theme
+ * - Uncomment dark theme
+ * - in ../index.html, update to have <body class="denali-dark-theme">
+ */
+@import 'yavin-light-theme';
+// @import 'yavin-dark-theme';
+
 @import 'denali/ember-power-select';
-@import 'navi-directory';
+@import 'navi-core';
 @import 'navi-reports';
+@import 'navi-dashboards';
+@import 'navi-directory';
 @import 'navi-notifications';
 
 // app styles
-@import 'theme.scss';
 @import 'components/index.scss';
 @import 'views/index.scss';
