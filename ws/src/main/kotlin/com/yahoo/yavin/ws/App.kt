@@ -25,14 +25,16 @@ class App {
 
     @EventListener(ApplicationReadyEvent::class)
     fun startApp(event: ApplicationReadyEvent) {
-        LOGGER.info("""
+        LOGGER.info(
+            """
             
         =========================================================
                  
           Yavin App Serving On Port: $serverPort (e.g. localhost:$serverPort)
          
         =========================================================
-        """.trimIndent())
+            """.trimIndent()
+        )
     }
 }
 

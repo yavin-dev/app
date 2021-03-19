@@ -1,0 +1,19 @@
+FROM alpine:latest
+
+RUN apk add nodejs
+RUN apk add npm
+RUN apk add openjdk11-jdk
+
+ENV PORT=8080
+COPY . /usr/src/yavin
+
+ENV DISABLE_MOCKS=true
+
+WORKDIR /usr/src/yavin/
+RUN cp -r ws/src/main/resources/demo-configs /usr/local/lib/yavin-configs
+RUN sed -i 's|path: demo-configs|path: /usr/local/lib/yavin-configs|' ws/src/main/resources/application.yaml
+RUN ./gradlew build -Penvironment=production -x test
+
+WORKDIR /
+RUN cp /usr/src/yavin/ws/build/libs/yavin-ws.jar /usr/local/lib/
+RUN rm -rf /usr/src/yavin
