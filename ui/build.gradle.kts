@@ -63,6 +63,7 @@ val testTask = tasks.register<NpmTask>("testUI") {
 val cleanTask = tasks.register<Delete>("cleanUI") {
   description = "Clean Yavin UI"
   delete("dist")
+  delete("node_modules")
 }
 
 sourceSets {
