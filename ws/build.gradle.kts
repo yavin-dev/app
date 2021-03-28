@@ -20,6 +20,8 @@ repositories {
 
 dependencies {
     implementation(project(":ui"))
+    // comment/Uncomment following line to disable/enable demo dataset
+    implementation(project(":demo"))
     implementation("com.yahoo.navi", "models", "0.2.0-beta-SNAPSHOT") {
         exclude(group = "com.yahoo.elide", module = "elide-core")
     }
@@ -46,6 +48,7 @@ dependencies {
     testImplementation("com.jayway.restassured", "rest-assured", "2.9.0")
 }
 
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -67,6 +70,7 @@ tasks.register<Exec>("execJar") {
     dependsOn("bootJar")
     commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}.jar")
 }
+
 
 tasks.bootJar {
     archiveBaseName.set(jarName)

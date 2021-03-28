@@ -1,3 +1,3 @@
 rootProject.name = "yavin-app"
 
-include("ui", "ws")
+include("ui", "ws", "demo")

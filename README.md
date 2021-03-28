@@ -51,6 +51,13 @@ This is an example app built using the [Yavin Framework](https://github.com/yavi
 - Define your [table config](./ws/src/main/resources/demo-configs/models/tables/DemoTables.hjson)
 - Check out our [installation guide](https://yavin.dev/pages/guide/03-start.html#yavin-detailed-installation-guide) for more info
 
+### Enable or disable Demo data set
+Enable or disable the netflix demo data from yavin-app while building by commenting/uncommenting
+following line
+`implementation(project(":demo"))`
+
+from `ws/build.gradle.kts`
+
 ## Resources
 
 [Yavin framework resources](https://github.com/yavin-dev/framework#resources)
