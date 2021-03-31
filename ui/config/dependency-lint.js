@@ -10,5 +10,7 @@ module.exports = {
     '@glimmer/tracking': '1.0.3 || 1.0.4',
     'ember-basic-dropdown': '3.0.13 || 3.0.16',
     'ember-element-helper': '0.2.0 || 0.3.2',
+    'ember-raf-scheduler': '0.1.0 || 0.2.0',
+    '@html-next/vertical-collection': '1.0.0 || 2.0.0',
   },
 };
