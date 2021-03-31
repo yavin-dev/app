@@ -26,7 +26,7 @@ module('Acceptance | custom reports', function (hooks) {
     );
 
     assert
-      .dom('.navi-report__title')
+      .dom('.report-header__title')
       .hasText(
         reportTitle,
         `Report title contains text "${reportTitle}" as expected`
