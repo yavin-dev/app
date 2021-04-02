@@ -2,24 +2,37 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ['ember'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    'plugin:prettier/recommended',
+    'plugin:qunit/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
   ],
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-jquery': 'error',
+
+    // cleanliness & consistency
+    'prefer-const': 'off', // const has misleading safety implications
+    'prefer-rest-params': 'off', // useful for super(...arguments) calls
+
+    // typescript
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+
+    // prettier
+    'prettier/prettier': 'error',
+
+    // better handled by prettier:
+    '@typescript-eslint/indent': 'off',
+  },
   overrides: [
     // node files
     {

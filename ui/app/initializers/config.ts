@@ -5,10 +5,14 @@
 import config from 'yavin-ui/config/environment';
 import { mergeWith } from 'lodash-es';
 
+declare global {
+  interface Window { NAVI_APP: object; }
+}
+
 export function initialize() {
   // Navi specific configuration
-  mergeWith(config.navi, window.NAVI_APP, (a, b) => {
-    Array.isArray(a) ? [...a, ...b] : undefined;
+  mergeWith(config.navi, window.NAVI_APP, (a: unknown, b: unknown) => {
+    Array.isArray(a) && Array.isArray(b) ? [...a, ...b] : undefined;
   });
 }
 

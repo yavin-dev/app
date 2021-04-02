@@ -4,7 +4,7 @@
  */
 
 import Component from '@glimmer/component';
-import config from 'ember-get-config';
+import config from 'yavin-ui/config/environment';
 
 export default class TopBarComponent extends Component {
   /**

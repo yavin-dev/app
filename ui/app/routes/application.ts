@@ -4,11 +4,15 @@
  */
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import type NaviMetaService from 'navi-data/services/navi-metadata';
+import type NaviUserService from 'navi-core/services/user';
 
 export default class ApplicationRoute extends Route {
-  @service naviMetadata;
+  @service
+  declare naviMetadata: NaviMetaService;
 
-  @service user;
+  @service
+  declare user: NaviUserService;
 
   /**
    * @method model
