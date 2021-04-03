@@ -5,4 +5,5 @@ declare module 'yavin-ui/templates/*' {
   export default tmpl;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TODO<T = any> = T;

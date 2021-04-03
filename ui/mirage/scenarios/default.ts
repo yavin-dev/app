@@ -2,8 +2,9 @@
  * Copyright 2021 Yahoo Holdings Inc.
  * Licensed under the terms of the MIT license. See accompanying LICENSE.md file for terms.
  */
+import type { Server } from 'miragejs';
 
-export default function (server) {
+export default function (server: Server): void {
   //loads all the fixtures
   server.loadFixtures();
 }

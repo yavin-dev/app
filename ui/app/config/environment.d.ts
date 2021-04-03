@@ -1,4 +1,4 @@
-import NaviConfig from "navi-config";
+import NaviConfig from 'navi-config';
 
 export default config;
 

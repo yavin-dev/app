@@ -2,14 +2,13 @@
  * Copyright 2021 Yahoo Holdings Inc.
  * Licensed under the terms of the MIT license. See accompanying LICENSE.md file for terms.
  */
-/* eslint-env node */
-/*jslint nomen: true, node:true */
-const express = require('express'),
-  useConfigMiddleware = require('./server-lib/use-config-middleware'),
-  useCompressionMiddleware = require('./server-lib/use-compression-middleware'),
-  useCacheMiddleware = require('./server-lib/use-cache-middleware'),
-  useStaticAssetMiddleware = require('./server-lib/use-static-asset-middleware'),
-  useFallbackResourceMiddleware = require('./server-lib/use-fallback-resource-middleware');
+
+const express = require('express');
+const useConfigMiddleware = require('./server/use-config-middleware');
+const useCompressionMiddleware = require('./server/use-compression-middleware');
+const useCacheMiddleware = require('./server/use-cache-middleware');
+const useStaticAssetMiddleware = require('./server/use-static-asset-middleware');
+const useFallbackResourceMiddleware = require('./server/use-fallback-resource-middleware');
 
 process.chdir(__dirname);
 

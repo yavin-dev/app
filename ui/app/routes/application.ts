@@ -19,7 +19,7 @@ export default class ApplicationRoute extends Route {
    * @override
    * @returns {Ember.RSVP.Promise}
    */
-  async model() {
+  async model(): Promise<void> {
     await Promise.all([
       this.user.findOrRegister(),
       this.naviMetadata.loadMetadata(),
