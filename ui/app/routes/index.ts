@@ -5,7 +5,7 @@
 import Route from '@ember/routing/route';
 
 export default class IndexRoute extends Route {
-  redirect() {
+  redirect(): void {
     this.transitionTo('directory');
   }
 }

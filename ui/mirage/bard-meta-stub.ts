@@ -4,15 +4,17 @@
  */
 
 //metadata
-import tableModels from './fixtures/metadata-tables';
-import timeGrainModels from './fixtures/metadata-time-grains';
+import type { Server } from 'miragejs';
+import { Response } from 'miragejs';
 import dimModels from './fixtures/metadata-dimensions';
 import metricModels from './fixtures/metadata-metrics';
+import tableModels from './fixtures/metadata-tables';
+import timeGrainModels from './fixtures/metadata-time-grains';
 
 /**
  * Method to configure metadata endpoints
  */
-export default function () {
+export default function (this: Server): void {
   /**
    * unsupported metricFunctions endpoint
    */
@@ -30,7 +32,7 @@ export default function () {
   /**
    * /tables endpoint
    */
-  this.get('/tables', (db, req) => {
+  this.get('/tables', (_db, req) => {
     let tables = tableModels;
 
     if (req.queryParams.format === 'fullview') {

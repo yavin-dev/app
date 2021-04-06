@@ -2,24 +2,45 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ['ember'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    'plugin:prettier/recommended',
+    'plugin:qunit/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
   ],
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-jquery': 'warn',
+
+    'ember/no-computed-properties-in-native-classes': 'warn',
+
+    // Some of these don't seem possible to fix yet
+    'ember/use-ember-data-rfc-395-imports': 'off',
+
+    // cleanliness & consistency
+    'prefer-const': 'off', // const has misleading safety implications
+    'prefer-rest-params': 'off', // useful for super(...arguments) calls
+
+    // typescript
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+
+    // prettier
+    'prettier/prettier': 'error',
+
+    // better handled by prettier:
+    '@typescript-eslint/indent': 'off',
+
+    // globally disable, but enable for ts files below
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+  },
   overrides: [
     // node files
     {
@@ -28,10 +49,10 @@ module.exports = {
         '.prettierrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
+        'index.js',
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
-        'lib/*/index.js',
         'server/**/*.js',
       ],
       parserOptions: {
@@ -44,9 +65,22 @@ module.exports = {
       plugins: ['node'],
       extends: ['plugin:node/recommended'],
       rules: {
-        // this can be removed once the following is fixed
-        // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off',
+        'node/no-unpublished-require': 'off', // https://github.com/mysticatea/eslint-plugin-node/issues/77
+        '@typescript-eslint/camelcase': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+    {
+      // enable the rule specifically for TypeScript files
+      files: ['*.ts'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ['error'],
+      },
+    },
+    {
+      files: ['app/mirage/routes/**'],
+      rules: {
+        'ember/no-get': 'off',
       },
     },
   ],

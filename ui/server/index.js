@@ -3,7 +3,7 @@
  * Licensed under the terms of the MIT license. See accompanying LICENSE.md file for terms.
  */
 /* eslint-env node */
-const useConfigMiddleware = require('../server-lib/use-config-middleware');
+const useConfigMiddleware = require('./use-config-middleware');
 
 /**
  * Loads middleware when launching from ember-cli

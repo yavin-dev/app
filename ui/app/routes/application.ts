@@ -4,18 +4,22 @@
  */
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import type NaviMetaService from 'navi-data/services/navi-metadata';
+import type NaviUserService from 'navi-core/services/user';
 
 export default class ApplicationRoute extends Route {
-  @service naviMetadata;
+  @service
+  declare naviMetadata: NaviMetaService;
 
-  @service user;
+  @service
+  declare user: NaviUserService;
 
   /**
    * @method model
    * @override
    * @returns {Ember.RSVP.Promise}
    */
-  async model() {
+  async model(): Promise<void> {
     await Promise.all([
       this.user.findOrRegister(),
       this.naviMetadata.loadMetadata(),
