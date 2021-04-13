@@ -9,7 +9,7 @@ plugins {
 }
 
 node {
-  version.set("12.16.0")
+  version.set("14.16.1")
   distBaseUrl.set("https://nodejs.org/dist")
   download.set(true)
   npmInstallCommand.set(if (System.getenv("CI") != null) "ci" else "install")
