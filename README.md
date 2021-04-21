@@ -21,6 +21,15 @@ This is an example app built using the [Yavin Framework](https://github.com/yavi
 - `git clone https://github.com/yavin-dev/app.git`
 - `cd yavin-app`
 
+### Demo Netfilx data
+The default build comes bundled with a demo data source running in H2 (in memory). To disable or remove
+the demo data source please do the following
+ws/src/build.gradle.kts
+
+Comment or remove following line and run the build commands.
+
+`implementation("dev.yavin","demo-config","0.7")`
+
 ### Start Yavin App
 
 - `./gradlew bootRun`
