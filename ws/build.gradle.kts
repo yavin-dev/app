@@ -6,6 +6,9 @@ plugins {
     id("org.jmailen.kotlinter") version "3.3.0"
     kotlin("jvm") version "1.4.30"
     kotlin("plugin.spring") version "1.4.30"
+    `java-library`
+    `maven-publish`
+    signing
 }
 
 repositories {
@@ -21,7 +24,7 @@ repositories {
 dependencies {
     implementation(project(":ui"))
     //Comment this line to disable the demo config
-    implementation("dev.yavin","demo-config","0.8")
+    implementation("dev.yavin","demo-config","0.9")
     implementation("com.yahoo.navi", "models", "0.2.0-beta-SNAPSHOT") {
         exclude(group = "com.yahoo.elide", module = "elide-core")
     }
@@ -72,4 +75,65 @@ tasks.register<Exec>("execJar") {
 
 tasks.bootJar {
     archiveBaseName.set(jarName)
+}
+
+// PUblishing to Maven central
+group = "dev.yavin"
+version = "0.1"
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "app"
+            from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name.set("yavin app")
+                description.set("UI and Webservice for the yavin")
+                url.set("http://yavin.dev")
+                licenses {
+                    license {
+                        name.set("MIT")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("yavin-dev")
+                        name.set("Yavin Development Team @VerizonMedia")
+                        email.set("yavin@verizonmedia.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:https://github.com/yavin-dev/app.git")
+                    developerConnection.set("scm:git:ssh:git@github.com:yavin-dev/app.git")
+                    url.set("http://yavin.dev")
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            val releasesRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = System.getenv("OSSRH_USER") as String?
+                password = System.getenv("OSSRH_TOKEN") as String?
+
+            }
+        }
+    }
+}
+
+project.setProperty("signing.password", System.getenv("GPG_SIGN_PASS"))
+
+signing {
+    sign(publishing.publications["mavenJava"])
 }
