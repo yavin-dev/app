@@ -26,7 +26,7 @@ The default build comes bundled with a demo data source running in H2 (in memory
 
 Comment or remove following line and run the build commands.
 
-`implementation("dev.yavin","demo-config","0.7")`
+`implementation("dev.yavin","demo-config","0.8")`
 
 ### Start Yavin App
 
