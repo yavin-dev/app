@@ -21,7 +21,7 @@ repositories {
 dependencies {
     implementation(project(":ui"))
     //Comment this line to disable the demo config
-    implementation("dev.yavin","demo-config","0.8")
+    implementation("dev.yavin","demo-config","0.9")
     implementation("com.yahoo.navi", "models", "0.2.0-beta-SNAPSHOT") {
         exclude(group = "com.yahoo.elide", module = "elide-core")
     }
