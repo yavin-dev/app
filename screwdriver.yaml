@@ -29,8 +29,11 @@ jobs:
       - ~pr
 
   main-sd-build:
+    annotations:
+      screwdriver.cd/ram: TURBO
+      screwdriver.cd/cpu: TURBO
     steps:
-      - echo success
+      - ./gradlew build -x test
     requires:
       - ~commit:sd-build
       - ~pr:sd-build
@@ -49,14 +52,27 @@ jobs:
       - install-node: |
           sd-cmd exec screwdriver/install-nodejs@latest $NODE_VERSION
           export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use node
-      - install: 
+      - install:
           cd ui
           npm ci --unsafe-perm
-      - install-ember-cli-github-pages: npm install ember-cli-github-pages 
+      - install-ember-cli-github-pages: npm install ember-cli-github-pages
       - build-pages: npx ember github-pages:commit --message "Deploy gh-pages from $SD_BUILD_SHA" --destination ../../
       - deploy: |
           . /tmp/ci/git-ssh.sh
           git push origin gh-pages:gh-pages
     secrets:
       - GIT_KEY_BASE64
-
+  publish:
+    requires: [~main-sd-build, ~gh-pages]
+    secrets:
+      # Publishing to NPM
+      - GH_TOKEN
+      - GPG_KEY
+      - GPG_ENCPHRASE
+      - OSSRH_TOKEN
+      - OSSRH_USER
+      - GPG_KEYNAME
+      - GPG_SIGN_PASS
+    steps:
+      - . ./decrypt.sh
+      - ./gradlew publish
