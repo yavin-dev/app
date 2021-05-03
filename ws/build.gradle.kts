@@ -67,11 +67,12 @@ tasks.withType<Test> {
     jvmArgs ("-Xmx2048m")
 }
 
-val jarName = "yavin-ws"
+val jarName = "app"
 tasks.register<Exec>("execJar") {
     dependsOn("bootJar")
     commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}.jar")
 }
+
 
 tasks.bootJar {
     archiveBaseName.set(jarName)
@@ -80,10 +81,13 @@ tasks.bootJar {
 // PUblishing to Maven central
 group = "dev.yavin"
 version = "0.1"
+//val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/app-0.1.jar"))
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
+            //artifact (yavin_app_artifact)
+            //artifactId = tasks.jar.get().archiveBaseName.get()
             artifactId = "app"
             from(components["java"])
             versionMapping {
