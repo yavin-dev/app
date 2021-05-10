@@ -81,14 +81,13 @@ tasks.bootJar {
 // PUblishing to Maven central
 group = "dev.yavin"
 version = "0.1"
-//val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/app-0.1.jar"))
+val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/app-".plus(version).plus(".jar")))
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            //artifact (yavin_app_artifact)
-            //artifactId = tasks.jar.get().archiveBaseName.get()
-            artifactId = "app"
+            artifact (yavin_app_artifact)
+            artifactId = tasks.jar.get().archiveBaseName.get()
             from(components["java"])
             versionMapping {
                 usage("java-api") {
@@ -136,7 +135,9 @@ publishing {
     }
 }
 
-project.setProperty("signing.password", System.getenv("GPG_SIGN_PASS"))
+allprojects {
+    extra["signing.password"] = System.getenv("GPG_SIGN_PASS")
+}
 
 signing {
     sign(publishing.publications["mavenJava"])
