@@ -1,0 +1,6 @@
+FROM alpine:latest
+
+RUN apk add openjdk11-jdk
+
+COPY yavin-run.sh /usr/local/bin/
+
