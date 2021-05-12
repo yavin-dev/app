@@ -10,6 +10,11 @@ shared:
   environment:
     NODE_VERSION: 14.16.1
     JOBS: 4
+    MVN_DEV_NAME: Yavin Development Team @VerizonMedia
+    MVN_DEV_EMAIL: yavin@verizonmedia.com
+    MVN_SCM_CONN: scm:git:https://github.com/yavin-dev/app.git
+    MVN_SCM_DEV_CONN: scm:git:ssh:git@github.com:yavin-dev/app.git
+    MVN_SCM_URL: http://yavin.dev
 
 jobs:
   main:
