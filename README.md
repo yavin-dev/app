@@ -38,7 +38,7 @@ Comment or remove following line and run the build commands.
 - Build & Test:`./gradlew build`
 - Build Only:`./gradlew build -x test`
 - Build For Prod:`./gradlew build -Penvironment=production`
-- Run Jar: `java -jar ws/build/libs/app.jar`
+- Run Jar: `java -jar ws/build/libs/yavin-app*.jar`
 
 ### Run Tests
 
