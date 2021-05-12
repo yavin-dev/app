@@ -67,7 +67,7 @@ tasks.withType<Test> {
     jvmArgs ("-Xmx2048m")
 }
 
-val jarName = "app"
+val jarName = "yavin-app"
 tasks.register<Exec>("execJar") {
     dependsOn("bootJar")
     commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}.jar")
@@ -81,7 +81,15 @@ tasks.bootJar {
 // PUblishing to Maven central
 group = "dev.yavin"
 version = "0.1"
-val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/app-".plus(version).plus(".jar")))
+val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/".plus(jarName).plus("-").plus(version).plus(".jar")))
+
+// Maven env vars. These are set via screwdriver.yaml
+var mvn_dev_name = System.getenv("MVN_DEV_NAME")
+var mvn_dev_email = System.getenv("MVN_DEV_EMAIL")
+
+var mvn_scm_conn = System.getenv("MVN_SCM_CONN")
+var mvn_scm_dev_conn = System.getenv("MVN_SCM_DEV_CONN")
+var mvn_scm_url = System.getenv("MVN_SCM_URL")
 
 publishing {
     publications {
@@ -109,14 +117,14 @@ publishing {
                 developers {
                     developer {
                         id.set("yavin-dev")
-                        name.set("Yavin Development Team @VerizonMedia")
-                        email.set("yavin@verizonmedia.com")
+                        name.set(mvn_dev_name)
+                        email.set(mvn_dev_email)
                     }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/yavin-dev/app.git")
-                    developerConnection.set("scm:git:ssh:git@github.com:yavin-dev/app.git")
-                    url.set("http://yavin.dev")
+                    connection.set(mvn_scm_conn)
+                    developerConnection.set(mvn_scm_dev_conn)
+                    url.set(mvn_scm_url)
                 }
             }
         }
