@@ -48,6 +48,11 @@ To run yavin demo using docker container:
 docker run -p 9999:8080 verizonmedia/yavin_demo:latest
 ```
 
+### Add custom hjson to docker container for exploring additional data sources
+```
+docker run -v <your path>:/usr/local/lib/yavin-configs -p 9999:8080 verizonmedia/yavin_demo:latest
+```
+
 ## Launch in Dokcer using PWD
 
 [![Click to Launch in Docker instantly](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/anupkumangodan/navi/pwd_1/container/docker/docker-compose.yml)
