@@ -34,11 +34,8 @@ jobs:
       - ~pr
 
   main-sd-build:
-    annotations:
-      screwdriver.cd/ram: TURBO
-      screwdriver.cd/cpu: TURBO
     steps:
-      - ./gradlew build -x test
+      - echo success
     requires:
       - ~commit:sd-build
       - ~pr:sd-build
@@ -68,6 +65,9 @@ jobs:
     secrets:
       - GIT_KEY_BASE64
   publish:
+    annotations:
+      screwdriver.cd/ram: TURBO
+      screwdriver.cd/cpu: TURBO
     requires: [~main-sd-build, ~gh-pages]
     secrets:
       # Publishing to NPM
@@ -80,4 +80,5 @@ jobs:
       - GPG_SIGN_PASS
     steps:
       - . ./decrypt.sh
+      - ./gradlew build -x test
       - ./gradlew publish
