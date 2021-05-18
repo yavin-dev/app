@@ -137,7 +137,6 @@ publishing {
             credentials {
                 username = System.getenv("OSSRH_USER") as String?
                 password = System.getenv("OSSRH_TOKEN") as String?
-
             }
         }
     }
