@@ -80,7 +80,7 @@ tasks.bootJar {
 
 // Publishing to Maven central
 group = "dev.yavin"
-version = "1.0.0-beta.4"
+version = "1.0.1-beta.4"
 val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/".plus(jarName).plus("-").plus(version).plus(".jar")))
 
 // Maven env vars. These are set via screwdriver.yaml
@@ -95,7 +95,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             artifact (yavin_app_artifact)
-            artifactId = tasks.jar.get().archiveBaseName.get()
+            artifactId = jarName
             from(components["java"])
             versionMapping {
                 usage("java-api") {
