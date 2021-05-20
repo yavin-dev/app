@@ -68,7 +68,7 @@ jobs:
     annotations:
       screwdriver.cd/ram: TURBO
       screwdriver.cd/cpu: TURBO
-    requires: [~main-sd-build, ~gh-pages]
+    requires: [~main]
     secrets:
       # Publishing to NPM
       - GH_TOKEN
