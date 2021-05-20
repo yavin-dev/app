@@ -26,7 +26,7 @@ The default build comes bundled with a demo data source running in H2 (in memory
 
 Comment or remove following line and run the build commands.
 
-`implementation("dev.yavin","demo-config","0.8")`
+`implementation("dev.yavin","demo-config","0.10")`
 
 ### Start Yavin App
 
@@ -38,7 +38,7 @@ Comment or remove following line and run the build commands.
 - Build & Test:`./gradlew build`
 - Build Only:`./gradlew build -x test`
 - Build For Prod:`./gradlew build -Penvironment=production`
-- Run Jar: `java -jar ws/build/libs/yavin-ws.jar`
+- Run Jar: `java -jar ws/build/libs/yavin-app*.jar`
 
 ### Run Tests
 
