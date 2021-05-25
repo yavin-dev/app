@@ -17,6 +17,11 @@ This is an example app built using the [Yavin Framework](https://github.com/yavi
 
 ## Getting Started
 
+### Quick start (no build required)
+Launch demo app using latest yavin-app jar
+`curl https://raw.githubusercontent.com/yavin-dev/app/master/yavin-run.sh | bash`
+
+### Pre-requisites for local build
 -  Install Java 8 or greater (more info [here](https://yavin.dev/pages/guide/02-start.html#prerequisites))
 - `git clone https://github.com/yavin-dev/app.git`
 - `cd yavin-app`
@@ -38,7 +43,7 @@ Comment or remove following line and run the build commands.
 - Build & Test:`./gradlew build`
 - Build Only:`./gradlew build -x test`
 - Build For Prod:`./gradlew build -Penvironment=production`
-- Run Jar: `java -jar ws/build/libs/app.jar`
+- Run Jar: `java -jar ws/build/libs/yavin-app*.jar`
 
 ### Run Tests
 

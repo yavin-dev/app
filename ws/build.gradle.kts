@@ -24,13 +24,13 @@ repositories {
 dependencies {
     implementation(project(":ui"))
     //Comment this line to disable the demo config
-    implementation("dev.yavin","demo-config","0.9")
+    implementation("dev.yavin","demo-config","0.10")
     implementation("com.yahoo.navi", "models", "0.2.0-beta-SNAPSHOT") {
         exclude(group = "com.yahoo.elide", module = "elide-core")
     }
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.0-pr32")
+    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.0-pr34")
     implementation("com.h2database", "h2", "1.3.176")
     // drivers for models
     runtimeOnly("org.apache.hive","hive-jdbc","3.1.2"){
@@ -67,7 +67,8 @@ tasks.withType<Test> {
     jvmArgs ("-Xmx2048m")
 }
 
-val jarName = "app"
+
+val jarName = "yavin-app"
 tasks.register<Exec>("execJar") {
     dependsOn("bootJar")
     commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}.jar")
@@ -78,16 +79,24 @@ tasks.bootJar {
     archiveBaseName.set(jarName)
 }
 
-// PUblishing to Maven central
+// Publishing to Maven central
 group = "dev.yavin"
-version = "0.1"
-val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/app-".plus(version).plus(".jar")))
+version = "1.0.1-beta.4"
+val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/".plus(jarName).plus("-").plus(version).plus(".jar")))
+
+// Maven env vars. These are set via screwdriver.yaml
+var mvn_dev_name = System.getenv("MVN_DEV_NAME")
+var mvn_dev_email = System.getenv("MVN_DEV_EMAIL")
+
+var mvn_scm_conn = System.getenv("MVN_SCM_CONN")
+var mvn_scm_dev_conn = System.getenv("MVN_SCM_DEV_CONN")
+var mvn_scm_url = System.getenv("MVN_SCM_URL")
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             artifact (yavin_app_artifact)
-            artifactId = tasks.jar.get().archiveBaseName.get()
+            artifactId = jarName
             from(components["java"])
             versionMapping {
                 usage("java-api") {
@@ -109,14 +118,14 @@ publishing {
                 developers {
                     developer {
                         id.set("yavin-dev")
-                        name.set("Yavin Development Team @VerizonMedia")
-                        email.set("yavin@verizonmedia.com")
+                        name.set(mvn_dev_name)
+                        email.set(mvn_dev_email)
                     }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/yavin-dev/app.git")
-                    developerConnection.set("scm:git:ssh:git@github.com:yavin-dev/app.git")
-                    url.set("http://yavin.dev")
+                    connection.set(mvn_scm_conn)
+                    developerConnection.set(mvn_scm_dev_conn)
+                    url.set(mvn_scm_url)
                 }
             }
         }
@@ -129,7 +138,6 @@ publishing {
             credentials {
                 username = System.getenv("OSSRH_USER") as String?
                 password = System.getenv("OSSRH_TOKEN") as String?
-
             }
         }
     }

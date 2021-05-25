@@ -50,7 +50,7 @@ docker run -p 9999:8080 verizonmedia/yavin_demo:latest
 
 ### Add custom hjson to docker container for exploring additional data sources
 ```
-docker run -v <your path>:/usr/local/lib/yavin-configs -p 9999:8080 verizonmedia/yavin_demo:latest
+docker run -v <your path>:/etc/yavin -p 9999:8080 verizonmedia/yavin_user:latest
 ```
 
 ## Launch in Dokcer using PWD
