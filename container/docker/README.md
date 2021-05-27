@@ -49,7 +49,7 @@ docker run -p 9999:8080 verizonmedia/yavin_demo:latest
 ```
 ## Docker file for supporting user hjson configs
 
-docker build -f container/docker/Docker.user_conf
+docker build -f container/docker/Docker
 
 ```
 Dockerfile
