@@ -3,3 +3,4 @@ FROM alpine:latest
 RUN apk add openjdk11-jdk
 RUN apk add curl
 COPY yavin-run.sh /usr/local/bin/
+RUN sh /usr/local/bin/yavin-run.sh yavin-app default 1
