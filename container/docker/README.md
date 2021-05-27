@@ -57,7 +57,7 @@ Dockerfile
 
 ### Add custom hjson to docker container for exploring additional data sources
 ```
-docker run -v <your path>:/etc/yavin -p 9999:8080 verizonmedia/yavin_user_conf:latest
+docker run -v <your path>:/etc/yavin -p 9999:8080 verizonmedia/yavin:latest
 ```
 
 ## Launch in Dokcer using PWD
