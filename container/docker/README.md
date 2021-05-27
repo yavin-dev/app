@@ -19,7 +19,7 @@ repo: yavin_base, yavin_demo, yavin
 We create a base image using Alpine Linux. This base image will have all the requried dependencies available. It will not have any entrypoint.
 
 ```
-Dockerfile.alpine
+Dockerfile.base
 ```
 
 ## Yavin Base image
@@ -33,10 +33,10 @@ FROM verizonmedia/yavin_base:latest
 
 ## Docker file for local demo
 
-docker build -f container/docker/Docker.alpine
+docker build -f container/docker/Docker.base
 
 ```
-Dockerfile.demo_local
+Dockerfile.demo-config
 ```
 
 ## Yavin Local demo image
