@@ -52,7 +52,7 @@ docker run -p 9999:8080 verizonmedia/yavin_demo:latest
 docker build -f container/docker/Docker.user_conf
 
 ```
-Dockerfile.user_conf
+Dockerfile
 ```
 
 ### Add custom hjson to docker container for exploring additional data sources
