@@ -2,5 +2,4 @@ FROM alpine:latest
 
 RUN apk add openjdk11-jdk
 RUN apk add curl
-COPY . /usr/src/yavin
 COPY yavin-run.sh /usr/local/bin/
