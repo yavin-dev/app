@@ -10,6 +10,11 @@ shared:
   environment:
     NODE_VERSION: 14.16.1
     JOBS: 4
+    MVN_DEV_NAME: Yavin Development Team @VerizonMedia
+    MVN_DEV_EMAIL: yavin@verizonmedia.com
+    MVN_SCM_CONN: scm:git:https://github.com/yavin-dev/app.git
+    MVN_SCM_DEV_CONN: scm:git:ssh:git@github.com:yavin-dev/app.git
+    MVN_SCM_URL: http://yavin.dev
 
 jobs:
   main:
@@ -49,14 +54,31 @@ jobs:
       - install-node: |
           sd-cmd exec screwdriver/install-nodejs@latest $NODE_VERSION
           export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use node
-      - install: 
+      - install:
           cd ui
           npm ci --unsafe-perm
-      - install-ember-cli-github-pages: npm install ember-cli-github-pages 
+      - install-ember-cli-github-pages: npm install ember-cli-github-pages
       - build-pages: npx ember github-pages:commit --message "Deploy gh-pages from $SD_BUILD_SHA" --destination ../../
       - deploy: |
           . /tmp/ci/git-ssh.sh
           git push origin gh-pages:gh-pages
     secrets:
       - GIT_KEY_BASE64
-
+  publish:
+    annotations:
+      screwdriver.cd/ram: TURBO
+      screwdriver.cd/cpu: TURBO
+    requires: [~main]
+    secrets:
+      # Publishing to NPM
+      - GH_TOKEN
+      - GPG_KEY
+      - GPG_ENCPHRASE
+      - OSSRH_TOKEN
+      - OSSRH_USER
+      - GPG_KEYNAME
+      - GPG_SIGN_PASS
+    steps:
+      - . ./decrypt.sh
+      - ./gradlew build -x test
+      - ./gradlew publish
