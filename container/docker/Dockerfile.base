@@ -1,5 +1,14 @@
 FROM alpine:latest
 
 RUN apk add openjdk11-jdk
+RUN apk add nodejs
+RUN apk add npm
 RUN apk add curl
+COPY . /usr/src/yavin
 COPY yavin-run.sh /usr/local/bin/
+ENV DISABLE_MOCKS=true
+WORKDIR /usr/src/yavin/
+RUN ./gradlew build -x test
+WORKDIR /
+RUN cp /usr/src/yavin/ws/build/libs/yavin-app*.jar /usr/local/lib/
+RUN rm -rf /usr/src/yavin
