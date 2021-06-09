@@ -28,4 +28,4 @@ PWD is not production grade platform, so it can show unexpected results. When th
 
 If the above step completed successfully, click the close button on the popup window.Then you can click (hyperlink) 8080 at the top as shown below.
 
-![ready to open](images/ready_open.png)# Yavin Docker Images
+![ready to open](images/ready_open.png)
