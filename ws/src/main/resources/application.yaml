@@ -62,3 +62,10 @@ spring:
 elide:
   async:
     cleanupEnabled: false
+---
+spring:
+  profiles: LocalFS
+elide:
+  dynamic-config:
+    enabled: true
+    path: /etc/yavin

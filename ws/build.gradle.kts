@@ -67,6 +67,7 @@ tasks.withType<Test> {
     jvmArgs ("-Xmx2048m")
 }
 
+
 val jarName = "yavin-app"
 tasks.register<Exec>("execJar") {
     dependsOn("bootJar")

@@ -1,0 +1,3 @@
+FROM verizonmedia/yavin_base:latest
+
+CMD java -jar /usr/local/lib/yavin-app*.jar --spring.profiles.active=LocalFS
