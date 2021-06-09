@@ -71,7 +71,7 @@ tasks.withType<Test> {
 val jarName = "yavin-app"
 tasks.register<Exec>("execJar") {
     dependsOn("bootJar")
-    commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}.jar")
+    commandLine = listOf("java", "-jar", "${project.buildDir}/libs/${jarName}-${version}.jar")
 }
 
 
@@ -81,7 +81,7 @@ tasks.bootJar {
 
 // Publishing to Maven central
 group = "dev.yavin"
-version = "1.0.1-beta.4"
+version = "1.0.1-beta.5"
 val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/".plus(jarName).plus("-").plus(version).plus(".jar")))
 
 // Maven env vars. These are set via screwdriver.yaml
