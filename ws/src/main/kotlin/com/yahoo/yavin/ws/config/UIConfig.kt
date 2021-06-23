@@ -17,9 +17,9 @@ import org.springframework.context.annotation.Configuration
 class UIConfig @Autowired constructor(elideSettings: ElideConfigProperties) {
     var user = ""
 
-    var dataSources: List<DataSource> = listOf(DataSource("default", elideSettings.graphql.path, DataSourceTypes.elide))
+    var dataSources: List<DataSource> = listOf(DataSource("default", "Media", "Info about movies and TV shows.", elideSettings.graphql.path, DataSourceTypes.elide))
 
-    var appPersistence = DataSource("persistence", elideSettings.jsonApi.path, DataSourceTypes.elide)
+    var appPersistence = DataSource("persistence", "Persistence", null, elideSettings.jsonApi.path, DataSourceTypes.elide)
 
     @JsonProperty("FEATURES")
     var features = UIFeatureSettings()

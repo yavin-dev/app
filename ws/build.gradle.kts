@@ -81,7 +81,7 @@ tasks.bootJar {
 
 // Publishing to Maven central
 group = "dev.yavin"
-version = "1.0.1-beta.5"
+version = "1.0.1-beta.6"
 val yavin_app_artifact = artifacts.add("archives",layout.buildDirectory.file("libs/".plus(jarName).plus("-").plus(version).plus(".jar")))
 
 // Maven env vars. These are set via screwdriver.yaml

@@ -22,7 +22,7 @@ class StaticAssetServingTest : IntegrationTest() {
 
     @Test
     fun landing_page_test() {
-        val content = this.javaClass::class.java.getResource("/META-INF/resources/ui/index.html").readText()
+        val content = ClassLoader.getSystemClassLoader().getResource("META-INF/resources/ui/index.html").readText()
 
         val response = given()
             .header("User", "testuser")
@@ -45,7 +45,7 @@ class StaticAssetServingTest : IntegrationTest() {
 
     @Test
     fun ui_route_test() {
-        val content = this.javaClass::class.java.getResource("/META-INF/resources/ui/index.html").readText()
+        val content = ClassLoader.getSystemClassLoader().getResource("META-INF/resources/ui/index.html").readText()
 
         given()
             .header("User", "testuser")
@@ -58,7 +58,7 @@ class StaticAssetServingTest : IntegrationTest() {
 
     @Test
     fun api_landing_page_test() {
-        val content = this.javaClass::class.java.getResource("/META-INF/resources/api/index.html").readText()
+        val content = ClassLoader.getSystemClassLoader().getResource("META-INF/resources/api/index.html").readText()
 
         given()
             .header("User", "testuser")
@@ -71,7 +71,7 @@ class StaticAssetServingTest : IntegrationTest() {
 
     @Test
     fun swagger_landing_page_test() {
-        val content = this.javaClass::class.java.getResource("/META-INF/resources/swagger/index.html").readText()
+        val content = ClassLoader.getSystemClassLoader().getResource("META-INF/resources/swagger/index.html").readText()
 
         given()
             .header("User", "testuser")
@@ -84,7 +84,7 @@ class StaticAssetServingTest : IntegrationTest() {
 
     @Test
     fun graphiql_landing_page_test() {
-        val content = this.javaClass::class.java.getResource("/META-INF/resources/graphiql/index.html").readText()
+        val content = ClassLoader.getSystemClassLoader().getResource("META-INF/resources/graphiql/index.html").readText()
 
         given()
             .header("User", "testuser")
