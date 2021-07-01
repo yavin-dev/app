@@ -13,9 +13,9 @@ plugins {
 
 repositories {
     maven {
-        url = uri("https://oss.jfrog.org/oss-snapshot-local")
+        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         content {
-            includeGroup("com.yahoo.navi")
+            includeGroup("dev.yavin")
         }
     }
     mavenCentral()
@@ -25,12 +25,12 @@ dependencies {
     implementation(project(":ui"))
     //Comment this line to disable the demo config
     implementation("dev.yavin","demo-config","0.10")
-    implementation("com.yahoo.navi", "models", "0.2.0-beta-SNAPSHOT") {
+    implementation("dev.yavin", "models", "0.2.0-beta-SNAPSHOT") {
         exclude(group = "com.yahoo.elide", module = "elide-core")
     }
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.0-pr34")
+    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.2")
     implementation("com.h2database", "h2", "1.3.176")
     // drivers for models
     runtimeOnly("org.apache.hive","hive-jdbc","3.1.2"){
