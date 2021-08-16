@@ -30,8 +30,10 @@ dependencies {
     }
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.2")
+    implementation("com.yahoo.elide", "elide-spring-boot-starter", "5.0.9")
+    implementation("org.projectlombok", "lombok", "1.18.20")
     implementation("com.h2database", "h2", "1.3.176")
+    implementation("net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1")
     // drivers for models
     runtimeOnly("org.apache.hive","hive-jdbc","3.1.2"){
         exclude(group="org.apache.logging.log4j", module = "log4j-slf4j-impl")
