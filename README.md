@@ -23,7 +23,7 @@ Launch demo app using latest yavin-app jar
 
 ### Pre-requisites for local build
 -  Install Java 8 or greater (more info [here](https://yavin.dev/pages/guide/02-start.html#prerequisites))
-- `git clone https://github.com/yavin-dev/app.git`
+- `git clone https://github.com/yavin-dev/app.git yavin-app`
 - `cd yavin-app`
 
 ### Demo Data
